@@ -20,7 +20,7 @@ class BC_Admin_User_Profile {
 
 		$accounts = $bc_accounts->get_sanitized_all_accounts();
 
-		$default_account = BC_Utility::get_user_meta( $user->ID, '_brightcove_default_account_' . get_current_blog_id(), true );
+		$default_account = get_user_meta( $user->ID, '_brightcove_default_account_' . get_current_blog_id(), true );
 		if( ! $default_account ) {
 			// If for some reason a user doesn't have a default account, fall back on the site default account
 			$default_account = get_option( '_brightcove_default_account' );
@@ -64,7 +64,7 @@ class BC_Admin_User_Profile {
 			return false;
 		}
 
-		BC_Utility::update_user_meta( $user_id, '_brightcove_default_account_' . get_current_blog_id(), $hash );
+		update_user_meta( $user_id, '_brightcove_default_account_' . get_current_blog_id(), $hash );
 		return true;
 	}
 }

@@ -478,7 +478,8 @@ class BC_Utility {
 	}
 
 	/**
-	 * Wrapper utility method for using WordPress.com get_user_attribute() when available. Falls back to get_user_meta()
+	 *
+	 * Wrapper for get_user_meta. Legacy for now deprecated WordPress.com get_user_attribute() when available.
 	 *
 	 * @param           $user_id
 	 * @param           $meta_key
@@ -487,18 +488,12 @@ class BC_Utility {
 	 * @return mixed
 	 */
 	public static function get_user_meta( $user_id, $meta_key, $single = true ) {
-
-		if ( function_exists( 'get_user_attribute' ) ) {
-			$meta_value = get_user_attribute( $user_id, $meta_key );
-		} else {
-			$meta_value = get_user_meta( $user_id, $meta_key, $single );
-		}
-
-		return $meta_value;
+		_deprecated_function( __FUNCTION__, '1.3.1', 'get_user_meta' );
+		return get_user_meta( $user_id, $meta_key, $single );
 	}
 
 	/**
-	 * Wrapper utility to for using WordPress.com update_user_attribute() when available. Falls back to update_user_meta()
+	 * Wrapper for update_user_meta. Legacy to handle now deprecated WordPress.com update_user_attribute() when available.
 	 *
 	 * @param $user_id
 	 * @param $meta_key
@@ -507,14 +502,8 @@ class BC_Utility {
 	 * @return mixed
 	 */
 	public static function update_user_meta( $user_id, $meta_key, $meta_value ) {
-
-		if ( function_exists( 'update_user_attribute' ) ) {
-			$result = update_user_attribute( $user_id, $meta_key, $meta_value );
-		} else {
-			$result = update_user_meta( $user_id, $meta_key, $meta_value );
-		}
-
-		return $result;
+		_deprecated_function( __FUNCTION__, '1.3.1', 'update_user_meta' );
+		return update_user_meta( $user_id, $meta_key, $meta_value );
 	}
 
 	/**
@@ -527,14 +516,8 @@ class BC_Utility {
 	 * @return mixed
 	 */
 	public static function delete_user_meta( $user_id, $meta_key, $meta_value ) {
-
-		if ( function_exists( 'delete_user_attribute' ) ) {
-			$result = delete_user_attribute( $user_id, $meta_key, $meta_value );
-		} else {
-			$result = delete_user_meta( $user_id, $meta_key, $meta_value );
-		}
-
-		return $result;
+		_deprecated_function( __FUNCTION__, '1.3.1', 'delete_user_meta' );
+		return delete_user_meta( $user_id, $meta_key, $meta_value );
 	}
 
 	public static function activate() {

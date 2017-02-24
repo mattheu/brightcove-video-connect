@@ -251,7 +251,7 @@ class BC_Accounts {
 			return false; // Permissions violation.
 		}
 
-		$hash = BC_Utility::get_user_meta( $user_id, '_brightcove_default_account_' . get_current_blog_id(), true );
+		$hash = get_user_meta( $user_id, '_brightcove_default_account_' . get_current_blog_id(), true );
 
 		if ( '' !== $hash ) {
 			$account = $this->get_account_by_hash( $hash );
@@ -283,7 +283,7 @@ class BC_Accounts {
 		$account = $this->get_account_by_hash( $hash );
 
 		if ( $account ) {
-			BC_Utility::update_user_meta( $user_id, '_brightcove_default_account_' . get_current_blog_id(), $hash );
+			update_user_meta( $user_id, '_brightcove_default_account_' . get_current_blog_id(), $hash );
 			$this->current_account = $account;
 		}
 
@@ -556,7 +556,7 @@ class BC_Accounts {
 			if ( count ( $permission_issues ) > 0 ) {
 				$errors[] = new WP_Error(
 					'account-permission-issue',
-					esc_html__( "Supplied account doesn't have the following permissions: ", 'brightcove' ) . 
+					esc_html__( "Supplied account doesn't have the following permissions: ", 'brightcove' ) .
 						implode( ', ', $permission_issues ) . '. ' .
 			            esc_html__( 'Please use an account that has these permissions.' , 'brightcove' )
 				);
